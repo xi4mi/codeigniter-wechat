@@ -1,0 +1,63 @@
+package ts;
+
+message PayInfo
+{
+    required int32 paytype = 1;         //支付类型，暂时没用到
+    required int32 channel = 2;         //子账户类型1：现金账户 2：额度账户 3：利润账户
+    optional int64 tranamt = 3;         //金额
+    optional int64 remainamt = 4;       //余额
+    optional bytes remark = 5;         //备注
+    optional bytes subcmd = 6;         //子命令
+    optional bytes userid = 7;         //操作人id
+}
+
+message Price                           //暂时未用到
+{
+    required bytes dealer = 1;         	//商户id
+    required int64 amt = 2;             //价格
+    optional bytes acctid = 3;         	//账户id
+    optional int64 channel = 4;         //1：现金账户 2：额度账户 3：利润账户
+    optional int64 secretprice = 5;     //批价类型
+    optional bytes ruleid = 6;         	//规则类型
+    optional int64 profit = 7;          //利润
+}
+
+message Profit
+{
+    required bytes dealer = 1;         	//商户id 直销商、经销商、顶级经销商都有自己唯一的id
+    required bytes acctid = 2;         	//对应的云账户id
+    optional int64 saleamt = 3;         //销售价格=定价*销售数量
+    optional int64 profit = 4;          //利润 顶级经销商利润为商品定价 经销商利润为商品差价 直销商利润为0
+    optional int64 shouldpay = 5;       //应付价格
+    optional int32 scrtprice = 6;       //是否秘价（后续要去掉，改为在程序中判断）
+    optional bytes ruleid = 7;         	//批价规则
+    optional bytes param = 8;          	//批价参数，跟批价规则一起用
+    optional bytes groupid = 9;        	//分组id
+    optional int64 uniprice = 10;       //定价
+    optional int32 num = 11;            //销售数量
+    optional int32 level = 12;          //关系链层级
+}
+
+message ProfitInfo
+{
+    optional bytes productid = 1;      	//商品id
+    optional int64 srcamt = 2;          //原始经销商售价
+    optional int64 saleamt = 3;         //最终售卖价格
+    optional int64 totalprofit = 4;     //总利润
+    repeated Profit profitlist = 5;     //利润链信息
+}
+
+message SubAcctInfo
+{
+    required bytes subacctid = 1;      	//云账户的子账户（1:现金账户 2:额度账户 3:利润账户）
+    optional int64 amt = 2;             //数量
+    optional int32 status = 3;          //子账户状态
+}
+
+message AcctInfo
+{
+    required bytes acctid = 1;         	//云账户id
+    required bytes dealid = 2;         	//商户id
+    repeated SubAcctInfo subacct = 3;   //子账户
+}
+

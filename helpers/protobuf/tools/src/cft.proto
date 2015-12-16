@@ -1,0 +1,10 @@
+package ts;
+
+message CFTInfo
+{
+	required bytes cftacctid = 1;		//财付通帐号
+	required bytes cftacctname = 2;		//财付通姓名
+	required int64 payamt = 3;			//财付通提现金额
+    optional bytes remark = 4;         	//提现备注
+}
+

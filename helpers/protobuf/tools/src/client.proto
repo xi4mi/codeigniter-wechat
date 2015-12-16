@@ -1,0 +1,19 @@
+package ts;
+
+message ClientInfo
+{
+    required bytes clientid = 1;   //客户id
+    optional bytes acctid = 2;     //客户id对应的云账户id
+    optional bytes fatherid = 3;   //上级商户的id
+    optional bytes topid = 4;      //顶级商户的id
+    optional int32 status = 5;     //0-normal
+    optional bytes group = 6;      //所属分组
+    optional int32 level = 7;      //在客户关系链中的层级
+}
+
+message ClientList
+{
+    required int32 num = 1;
+    repeated ClientInfo client = 2; 
+}
+

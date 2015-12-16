@@ -1,0 +1,58 @@
+package ts;
+
+message ProductParam
+{
+    required bytes key = 1;
+    required bytes value = 2;
+}
+
+message StorageInfo
+{
+	required int32 storagetype = 1; 		//0 tsales 1 tsup
+	optional bytes supplyerid = 2;			//若storagetype为1，需填写供货商id
+	optional int32 storageid = 3;			//库存id
+	optional bytes esalesaccount = 4;		//esales帐号
+	optional bytes esalespassword = 5;		//esales帐号密码
+	optional bytes esalespassword2 = 6;		//esales帐号密码2
+	optional bytes esalesfilepath = 7;		//密钥文件路径
+	optional bytes loginuser = 8;			//登录用户名
+	optional bytes loginpassword = 9;		//登录密码
+}
+
+message ProductInfo
+{
+	required bytes productid = 1;           	//商品id
+	required bytes playerid = 2;	        	//玩家id（邮箱，qq号等）
+	required int32 productnum = 3;		    	//商品数量
+	optional int32 defaultvalue = 4;			//商品面额
+	optional bytes providerid = 5;				//所属挂机程序登录id
+    optional int32 salerprovince = 6;       	//所属省份
+    optional int32 producttmpid = 7;        	//商品模版id
+	optional bytes accounttype = 8;				//帐号类型
+	optional bytes consumemode = 9;				//充值类型（寄售、充点）预留
+	optional bytes gameid = 10;					//游戏id
+	optional bytes gamename = 11;				//游戏名称
+	optional bytes area = 12;					//大区
+	optional bytes server = 13;					//服务器				
+	optional bytes roleaccount = 14;			//玩家游戏账号（角色等）
+	optional bytes rolepassword = 15;			//玩家游戏账号密码（需加密）
+	optional bytes bindipaddress = 16;			//绑定的ip (预留)
+	repeated ProductParam productparamlist = 17;//发货参数列表
+	repeated StorageInfo storageinfolist = 18;	//货源信息列表
+	optional int32 storagelistpoint	= 19;		//当前发货的货源列表下标
+	optional bytes submittime = 20; 			//下单时间
+	optional bytes tradetime = 21;				//预发货时间
+	optional bytes deadlinetime = 22;			//处理截止时间（间隔时间后台可配）
+	optional bytes userip = 23;					//用户ip（网吧ip）
+    optional int32 providemode = 24;            //发货模式 内部发货：0 挂机发货：1
+}
+
+//待发货订单信息
+message AcceptedOrder
+{
+    required bytes orderid = 1;
+    required int32 storageid = 2;           //库存id
+    required bytes playerid = 3;            //玩家id（邮箱，qq号等）
+    required int32 producttmpid = 4;        //商品模版id
+    required bytes esalesaccount = 5;       //esales帐号
+}

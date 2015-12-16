@@ -1,0 +1,26 @@
+package scsa;
+
+import "comm.proto";
+
+message AcctStat
+{
+    required int32 accttype = 1;
+    optional uint32 usedmem = 2;
+    optional uint32 nodenum = 3;
+}
+
+message SetStat 
+{
+    required CommHead head = 1;
+    required string   setname = 2;
+    required string   host = 3;
+    required string   role = 4;
+    optional uint32   usedmem = 5;
+    optional uint32   nodenum = 6; 
+    optional uint64   syndelay = 7;
+    optional uint64   citysyndeley = 8;
+    optional uint32   reporttime = 9; 
+    repeated AcctStat acctstat = 10; 
+	
+	optional uint32 confmem = 11;//配置的最大内存
+}

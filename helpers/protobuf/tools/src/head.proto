@@ -1,0 +1,14 @@
+package ts;
+message ServiceHead
+{
+    required bytes cmdcode = 1;    	//外部命令字
+    optional bytes seq = 2;        	//外部序列号
+    optional bytes subcmd = 3;     	//内部业务系统命令字
+    optional bytes portalseq = 4;  	//portal流水号
+    optional bytes trantime = 5;   	//请求时间
+    optional int32 resultcode = 6;  //结果码
+    optional bytes resultinfo = 7; 	//结果信息
+    optional int32 errorcode = 8;   //错误码
+    optional bytes errinfo = 9;    	//错误信息
+    optional uint32 sessionid = 10; //会话id
+}

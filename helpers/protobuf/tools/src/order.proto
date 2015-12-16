@@ -1,0 +1,24 @@
+package ts;
+
+import "client.proto";
+import "pay.proto";
+import "product.proto";
+
+message Order 
+{
+    required bytes orderid = 1;        //订单id
+    required bytes status = 2;         //订单状态
+    optional bytes type = 3;           //订单类型
+    optional bytes out_orderid = 4;    //外部订单号
+    optional ClientInfo client = 5;    //客户信息
+    optional PayInfo pay = 6;          //支付信息
+    optional ProductInfo product = 7;  //商品信息
+    optional ProfitInfo profit = 8;    //分润信息
+    optional bytes content = 9;        //内容
+    optional bytes extend1 = 10;       //扩展字段1
+    optional bytes extend2 = 11;       //扩展字段2
+    optional bytes extend3 = 12;       //扩展字段3
+    optional int32 resultcode = 13;    //发货结果码 
+    optional bytes resultinfo = 14;    //发货结果信息 
+}
+

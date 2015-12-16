@@ -1,0 +1,167 @@
+package ts;
+
+import "head.proto";
+import "client.proto";
+import "pay.proto";
+import "product.proto";
+import "cft.proto";
+
+//查询账户余额请求
+message QueryAmt
+{
+    required ServiceHead head = 1;
+    repeated ClientInfo client = 2; //客户信息（可以一次查多个人的账户）
+}
+//查询账户余额应答
+message QueryAmtAns
+{
+    required ServiceHead head = 1;
+    repeated ClientInfo client = 2;
+    repeated AcctInfo acct = 3;     //账户余额信息
+}
+ 
+//充值请求，暂时未用到
+message Charge
+{
+    required ServiceHead head = 1;
+    optional ClientInfo client = 2;
+    optional PayInfo pay = 3;
+}
+
+//充值响应
+message ChargeAns
+{
+    required ServiceHead head = 1;
+    optional ClientInfo client = 2;
+    optional PayInfo pay = 3;
+}
+
+//财付通充值请求
+message CFTCharge
+{
+    required ServiceHead head = 1;
+    required bytes type = 2;
+    optional ClientInfo client = 3;
+    optional PayInfo pay = 4;
+    optional ProductInfo product = 5;
+    optional bytes content = 6;
+    optional bytes orderid = 7;
+    optional bytes out_orderid = 8;
+    optional bytes token = 9;
+    optional bytes status = 10;
+}
+
+//财付通充值响应
+message CFTChargeAns
+{
+    required ServiceHead head = 1;
+    optional bytes type = 2;
+    optional ClientInfo client = 3;
+    optional PayInfo pay = 4;
+    optional ProductInfo product = 5;
+    optional bytes content = 6;
+    optional bytes orderid = 7;
+    optional bytes out_orderid = 8;
+    optional bytes token = 9;
+    optional bytes status = 10;
+}
+
+//支付下单/预发货/发货回调
+message Pay
+{
+    required ServiceHead head = 1;
+    optional ClientInfo client = 2;
+    optional ProductInfo product = 3;
+    optional PayInfo payinfo = 4;
+    optional ProfitInfo profitinfo = 5;
+}
+
+//请求响应
+message PayAns
+{
+    required ServiceHead head = 1;
+    optional ClientInfo client = 2;
+    optional ProductInfo product = 3;
+    optional PayInfo payinfo = 4;
+}
+
+//tsup支付请求
+message TSupPay
+{
+    required ServiceHead head = 1;
+    required ClientInfo client = 2;
+    optional ProductInfo product = 3;
+    optional ProductInfo tsupproduct = 4;
+    optional PayInfo payinfo = 5;
+    optional ProfitInfo profitinfo = 6;
+}
+
+//tsup支付响应
+message TSupPayAns
+{
+    required ServiceHead head = 1;
+    optional ClientInfo client = 2;
+    optional ProductInfo product = 3;
+    optional ProductInfo tsupproduct = 4;
+    optional PayInfo payinfo = 5;
+}
+
+//转账请求
+message TransAmt
+{
+    required ServiceHead head = 1;
+    optional ClientInfo from_client = 2;
+    optional ClientInfo to_client = 3;
+    optional PayInfo pay_info = 4;
+}
+
+//转账响应
+message TransAmtAns
+{
+    required ServiceHead head = 1;
+    optional ClientInfo from_client = 2;
+    optional ClientInfo to_client = 3;
+    optional PayInfo payinfo = 4;
+}
+
+//提现请求
+message Withdraw
+{
+    required ServiceHead head = 1;
+    required ClientInfo client = 2;
+    required CFTInfo cft = 3;
+}
+
+//提现响应
+message WithdrawAns
+{
+    required ServiceHead head = 1;
+}
+
+//查询发货状态
+message QueryProvide
+{
+    required ServiceHead head = 1;
+}
+
+//查询发货状态响应
+message QueryProvideAns
+{
+    required ServiceHead head = 1;
+    optional int32 type = 2;
+}
+
+//账户变更（冻结 解冻）
+message AlterAcct
+{
+    required ServiceHead head = 1;
+    required ClientInfo client = 2;
+    required PayInfo pay = 3;
+}
+
+message AlterAcctAns
+{
+    required ServiceHead head = 1;
+    optional ClientInfo client = 2;
+    optional PayInfo pay = 3;
+}

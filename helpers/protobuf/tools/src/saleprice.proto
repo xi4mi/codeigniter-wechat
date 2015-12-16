@@ -1,0 +1,25 @@
+package ts;
+import "head.proto";
+
+import "client.proto";
+import "product.proto";
+import "pay.proto";
+
+message SalePrice   //批价请求
+{
+    required ServiceHead head = 1;          //请求头
+    required ClientInfo client = 2;         //商户信息（只有一个商户）
+    required ProductInfo product = 3;       //商品信息
+    optional PayInfo payinfo = 4;           //需要告诉批价server付款渠道，以便于分润区别处理
+    repeated ClientInfo client_list = 5;    //关系链
+    optional ProfitInfo profitinfo = 6;     //支付的时候，需要带入profitinfo和批价结果进行比较
+}
+
+message SalePriceAns    //批价应答
+{
+    required ServiceHead head = 1;          //响应头
+    optional ClientInfo client = 2;         //商户信息
+    optional ProductInfo product = 3;       //商品信息
+    optional PayInfo payinfo = 4;           //支付信息
+    optional ProfitInfo profitinfo = 5;     //分润链信息
+}

@@ -1,0 +1,37 @@
+package ts;
+
+import "head.proto";
+import "product.proto";
+import "client.proto";
+
+//发货请求
+message Provide
+{
+    required ServiceHead head = 1;
+    required ProductInfo product = 2;
+    optional ClientInfo client = 3;
+}
+
+//发货响应
+message ProvideAns
+{
+    required ServiceHead head = 1;
+    optional ProductInfo product = 2; 
+    optional ClientInfo client = 3;
+}
+
+//批量拉取订单
+message GetOrderList
+{
+    required ServiceHead head = 1;
+    required bytes top_dealerid = 2;
+    repeated int32 producttmpid = 3;        //模版id列表
+}
+
+//批量拉取订单响应
+message GetOrderListAns
+{
+    required ServiceHead head = 1;
+    required int32 ordernum = 2;            //订单个数（最大数量后台可配）
+    repeated AcceptedOrder orderlist = 3;
+}

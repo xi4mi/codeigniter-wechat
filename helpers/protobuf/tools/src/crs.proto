@@ -1,0 +1,15 @@
+package ts;
+import "head.proto";
+import "client.proto";
+
+message GetCRS 
+{
+    required ServiceHead head = 1;
+    required ClientInfo clientinfo =2;
+}
+
+message GetCRSAns 
+{
+    required ServiceHead head = 1;
+    repeated ClientInfo client_list = 2;
+}
